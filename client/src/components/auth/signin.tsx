@@ -25,7 +25,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './signin.css'
 import logo from '../../assets/image/icon/logo.jpg'
 const theme = createTheme();
-function SignIn() {
+function SignIn(props) {
     const [user,setUser]=useState('')
     const [password,setPassword]=useState('')
     const [loading,setLoading]=useState(false)
@@ -40,16 +40,54 @@ function SignIn() {
     const handleClickShowPassword = () => {
         setShowPassword( !showPassword );
     };
-    const handleMouseDownPassword = (event) => {
+    const handleMouseDownPassword = (event:any) => {
         event.preventDefault();
     };
-    const handleSubmit = (event:any) => {
+    const handleSubmit = async (event:any) => {
         event.preventDefault();
-        const data = {
-            user:user,
-            password:password
-        };
-        console.log(data)
+        try {
+            setLoading(true)
+			const response = await axios.post(`${apiUrl}/admin`,{
+                username: user,
+                password: password,
+            })
+			if (response.data.success) {
+				// dispatch({
+				// 	type: 'SET_AUTH',
+				// 	payload: { isAuthenticated: true, user: response.data.user }
+				// })
+                localStorage.setItem(
+					'adminGara',
+					JSON.stringify(response.data.isActive)
+				)
+                const storage = localStorage.getItem('adminGara');
+                const loggedInUser = storage !== null ? JSON.parse(storage) : null;
+                props.loggedIn(loggedInUser);
+                toast.success( `${response.data.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setLoading(false);
+			}
+		} catch (error:any) {
+            setLoading(false);
+            toast.error(`${error.response.data.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            if (error.response.data) return error.response.data
+			else return { success: false, message: error.message }
+		}
     };
 
     return (

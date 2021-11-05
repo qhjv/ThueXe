@@ -1,0 +1,23 @@
+.dashboard{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:#F7F9FE;
+    display:flex
+}
+.dashboard .logout{
+    position:absolute;
+    bottom:30px;
+    left:20px;
+    width:200px;
+    padding:15px;
+    color:red;
+    font-weight: 600;
+    font-size: 17px;
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+}
+.dashboard .logout:hover{
+    background:#f7f8fc;
+}

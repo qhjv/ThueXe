@@ -3,11 +3,11 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 const URI = process.env.DATABASE_URL;
-export async function connect () {
+export async function connect() {
     try {
-        await mongoose.connect((URI:String), {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+        await mongoose.connect('mongodb://localhost:27017/storethuexe', {
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true,
             // useFindAndModify: false,
             // useCreateIndex: true
         });
