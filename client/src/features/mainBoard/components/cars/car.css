@@ -1,0 +1,18 @@
+.carBoard{
+    padding:15px 20px;
+}
+.carBoard-title{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.carBoard .carBoard-title h3{
+    margin:0;
+}
+.carBoard .carBoard-title .MuiButtonBase-root.carBoard-title__add {
+    padding: 6px 12px;
+    border-radius:3px;
+    background: #ffa00a;
+    font-weight:700;
+    color:#fff;
+}

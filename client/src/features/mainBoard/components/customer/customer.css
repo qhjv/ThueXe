@@ -1,0 +1,18 @@
+.customer{
+    padding:15px 20px;
+}
+.customer-title{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.customer .customer-title h3{
+    margin:0;
+}
+.customer .customer-title .MuiButtonBase-root.customer-title__add {
+    padding: 6px 12px;
+    border-radius:3px;
+    background: #ffa00a;
+    font-weight:700;
+    color:#fff;
+}
