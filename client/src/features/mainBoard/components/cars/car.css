@@ -16,3 +16,8 @@
     font-weight:700;
     color:#fff;
 }
+.customer-list{
+    margin-top:30px;
+    overflow-y: auto;
+    height:500px;
+}
