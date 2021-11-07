@@ -1,10 +1,48 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import './customer.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Button from '@mui/material/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import customerApi from 'api/customerAPI';
 
 function Customer(props) {
+    interface Customer {
+        _id: string;
+        name: string;
+        age: string;
+        address: string;
+        tel: string;
+        status: Boolean;
+    }
+    const [customers, setCustomers] = useState<any>([]);
+
+    const getCustomer = async()=>{
+        (async () => {
+            try {
+                // setLoading(true)
+                const customerList = await customerApi.getAllCustomer();
+                setCustomers(customerList)
+                // const action = getMovie(moviesList)
+                // dispatch(action)
+                // setLoading(false)
+                console.log(customerList)
+            } catch (error:any) {
+                toast.error(`${error.response.data.message}`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+        })();
+    }
+    useEffect(() => {
+        getCustomer()
+    }, [])
     return (
         <div className="customer">
             <div className="customer-title">
@@ -17,31 +55,25 @@ function Customer(props) {
                 <table className="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">STT</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Tuổi</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {(customers?customers:[]).map((customer,index)=>(
+                            <tr key={index}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{customer.name}</td>
+                                <td>{customer.age}</td>
+                                <td>{customer.address}</td>
+                                <td>{customer.status==true?"Đang thuê":"Trống"}</td>
+                                <td><a href="">Sửa/Xóa</a></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

@@ -1,7 +1,13 @@
-POST  http://localhost:6000/api/admin
+POST  http://localhost:6000/api/car
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "1234565"
+    "name": "vinfast",
+    "description": "test",
+    "failure": "mới",
+    "licensePlate": "123",
+    "type": "4 chỗ",
+    "company": "VinGroup",
+    "status": false,
+    "price": "500000"
 }

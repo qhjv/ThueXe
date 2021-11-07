@@ -21,3 +21,6 @@
     overflow-y: auto;
     height:500px;
 }
+.customer-list table{
+    text-align: center;
+}
