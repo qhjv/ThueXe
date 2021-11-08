@@ -10,8 +10,8 @@ function MainBoard(props) {
         <div className="mainBoard">
             <div className="mainBoard-div">
                 <Routes>
-                    <Route path="/" element={<Car/>}/>
-                    <Route path="/customer" element={<Customer/>}/>
+                    <Route path="/" element={<Customer/>}/>
+                    <Route path="/car" element={<Car/>}/>
                 </Routes>
             </div>
         </div>

@@ -16,11 +16,19 @@
     font-weight:700;
     color:#fff;
 }
-.customer-list{
+.customer-list,
+.car-list{
     margin-top:30px;
     overflow-y: auto;
     height:500px;
 }
-.customer-list table{
+.customer-list table,
+.car-list table{
     text-align: center;
+}
+.dialog-child{
+    margin:0 7px;
+}
+.css-twia2z-MuiPaper-root-MuiDialog-paper{
+    max-width:675px!important;
 }

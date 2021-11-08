@@ -16,3 +16,29 @@
     font-weight:700;
     color:#fff;
 }
+.td-button{
+    display:flex;
+    justify-content:center
+}
+.button-active{
+    cursor:pointer;
+    text-decoration: underline;
+}
+.button-edit{
+    margin-right:10px;
+}
+.button-delete{
+    margin-left:10px;
+}
+.button-active:hover{
+    color:blue!important
+}
+.busy{
+    color:red!important;
+}
+.no-busy{
+    color:green!important;
+}
+.dialog-child div{
+    width:100%;
+}

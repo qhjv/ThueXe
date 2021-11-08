@@ -14,12 +14,12 @@ function Menu(props) {
                         <div className="navbar__list">
                             <ul className="nav navbar-nav">
                                 <NavLink className="navbar-li" to="/">
-                                    <i className="fas fa-car"></i>
-                                    <a className="navbar-a" >Danh sách xe</a>
-                                </NavLink>
-                                <NavLink className="navbar-li" to="/customer">
                                     <i className="fas fa-users"></i>
                                     <a className="navbar-a" >Danh sách khách hàng</a>
+                                </NavLink>
+                                <NavLink className="navbar-li" to="/car">
+                                    <i className="fas fa-car"></i>
+                                    <a className="navbar-a" >Danh sách xe</a>
                                 </NavLink>
                                 <NavLink className="navbar-li" to="/booking">
                                     <i className="fas fa-tasks"></i>

@@ -30,6 +30,7 @@
     margin-right:15px;
 }
 .menu ul .navbar-li a{
+    padding-right: 5px;
     font-size: 13px;
     font-weight: 500;
     text-decoration: underline;
