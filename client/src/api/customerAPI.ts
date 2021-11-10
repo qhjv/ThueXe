@@ -7,6 +7,10 @@ const customerApi = {
         const url = '/customer';
         return axiosClient.get(url)
     },
+    getOneCustomer(id){
+        const url = `customer/${id}`;
+        return axiosClient.get(url)
+    },
     createCustomer(data){
         const url = '/customer';
         return axiosClient.post(url , data)

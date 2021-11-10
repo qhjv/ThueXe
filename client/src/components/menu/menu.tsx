@@ -21,7 +21,7 @@ function Menu(props) {
                                     <i className="fas fa-car"></i>
                                     <a className="navbar-a" >Danh sách xe</a>
                                 </NavLink>
-                                <NavLink className="navbar-li" to="/booking">
+                                <NavLink className="navbar-li" to="/booked">
                                     <i className="fas fa-tasks"></i>
                                     <a className="navbar-a" >Quản lý đặt xe</a>
                                 </NavLink>

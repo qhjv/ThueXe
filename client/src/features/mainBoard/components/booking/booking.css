@@ -1,0 +1,38 @@
+.booking-div{
+    padding:30px 50px;
+}
+.button-back{
+    color:#ffa00a;
+    font-size:20px;
+    font-weight:600
+}
+.button-back i{
+    margin-right:10px;
+    font-size: 16px;
+}
+.booking-info{
+    margin:25px ;
+}
+.booking-info__div{
+    margin-top:5px;
+    display:flex;
+    justify-content: start;
+    align-items:center
+}
+.booking-info__value{ 
+    font-size:17px;
+    font-weight:500;
+    margin-left:10px;
+}
+.booking-info__select{
+    margin-top:25px;
+}
+.form-select{ 
+    margin-left:10px;
+    width:400px
+}
+.form-select:focus {
+    border-color:#ffa00a ;
+    outline: 0;
+    box-shadow: none!important;
+}

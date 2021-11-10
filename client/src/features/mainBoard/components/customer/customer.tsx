@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import customerApi from 'api/customerAPI';
 import DialogCustomer from './components/dialogCustomer'
+import { Link, NavLink } from 'react-router-dom';
 
 function Customer(props) {
     interface Customer {
@@ -18,10 +19,9 @@ function Customer(props) {
     }
     const [customers, setCustomers] = useState<any>([]);
     const [editCustomer, setEditCustomer] = useState([]);
-    const [open, setOpen] = useState(true);
     const [openDialog, setOpenDialog] = useState(false);
     const [formMode, setFormMode] = useState(true);
-    
+
     const getCustomer = async()=>{
         (async () => {
             try {
@@ -128,6 +128,7 @@ function Customer(props) {
             });
         }
     }
+    
     return (
         <div className="customer">
             <ToastContainer/>
@@ -178,7 +179,7 @@ function Customer(props) {
                                         onClick={()=>handleDelete(customer._id)} 
                                     >Xóa</div>
                                 </td>
-                                <td><a href="">Cho thuê</a></td>
+                                <td><Link className="button-active" to={`/booking/${customer._id}`}>Cho thuê</Link></td>
                             </tr>
                         ))}
                     </tbody>
