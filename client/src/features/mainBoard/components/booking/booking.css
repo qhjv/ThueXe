@@ -1,5 +1,7 @@
 .booking-div{
     padding:30px 50px;
+    height: 100%;
+    overflow-y:scroll
 }
 .button-back{
     color:#ffa00a;
@@ -24,8 +26,13 @@
     font-weight:500;
     margin-left:10px;
 }
-.booking-info__select{
+.booking-info__select,
+.booking-info__date{
     margin-top:25px;
+}
+.booking-info__date .booking-info__value{
+    font-size:15px;
+    font-weight:400;
 }
 .form-select{ 
     margin-left:10px;
@@ -35,4 +42,68 @@
     border-color:#ffa00a ;
     outline: 0;
     box-shadow: none!important;
+}
+.car-info table{
+    margin-top:30px;
+    text-align: center;
+}
+.booking-info__value .css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    top:0!important
+}
+.booking-info__value .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root {
+    background: white;
+}
+.booking-info__value .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+    height:38px;
+}
+.booking-info__value .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+    line-height: 1rem!important;
+    top: -5px!important;
+}
+.booking-info__price{
+    display:flex;
+    justify-content:end;
+    margin-top:30px
+}
+.price{
+    display:flex;
+    justify-content:space-between;
+    align-items: baseline;
+}
+.price p{
+    margin:0
+}
+.price + .price{
+    margin-top:20px
+}
+.price-label{
+    margin-right:50px
+}
+.price-value {
+    font-size: 20px;
+    font-weight:500;
+    letter-spacing: 1px;
+}
+.booking-info__div.booking-info__submit {
+    justify-content: end;
+    margin-top:70px
+}
+.booking-info__div.booking-info__submit .button{
+    padding:6px 16px;
+    border-radius:5px;
+    transition:0.3s;
+    cursor:pointer
+}
+.button-watch {
+    background: rgb(252, 244, 234);
+}
+.button-watch:hover {
+    background: rgb(253, 220, 179);
+}
+.button-submit{
+    background:#ffa00a;
+    margin-left:20px
+}
+.button-submit:hover{
+    background:#cf8307;
 }

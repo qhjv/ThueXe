@@ -5,13 +5,17 @@ import useCustomerInfo from '../../../../hooks/useCustomerInfo'
 import './booking.css'
 import { ToastContainer, toast } from 'react-toastify';
 import carApi from 'api/carAPI';
+import FilterCarByDate from './components/filterCarByDate'
+import { formatPrice } from 'utils/formatPrice';
 
 function Booking(props) {
     const [cars, setCars] = useState<any>([]);
     const [oneCustomer, setOneCustomer] = useState<any>({});
+    const [oneCar, setOneCar] = useState<any>({});
+    const [idCar,setIdCar] = useState<any>();
 
     let { id } = useParams();
-    const {customer,loading}= useCustomerInfo(id)
+    const {customer,loading}= useCustomerInfo(id);
 
     const getCar = async()=>{
         (async () => {
@@ -35,6 +39,41 @@ function Booking(props) {
             }
         })();
     }
+    const handleChooseCar =(e) =>{
+        setIdCar(e.target.value)
+    }
+    useEffect(() => {
+        if(idCar){
+            (async () => {
+                try {
+                    // setLoading(true)
+                    const car= await carApi.getOneCar(idCar);
+                    setOneCar(car)
+                } catch (error:any) {
+                    setOneCar({
+                        name: "",
+                        description: "",
+                        failure: "",
+                        licensePlate: "",
+                        type: "",
+                        company: "",
+                        price: "",
+                    })
+                    console.log(error)
+                }
+            })();
+        }else{
+            setOneCar({
+                name: "",
+                description: "",
+                failure: "",
+                licensePlate: "",
+                type: "",
+                company: "",
+                price: "",
+            })
+        }
+    }, [idCar])
     useEffect(() => {
         getCar()
         setOneCustomer(customer)
@@ -65,9 +104,19 @@ function Booking(props) {
                     <div className="booking-info__label">Số điện thoại : </div>
                     <div className="booking-info__value">{oneCustomer.tel}</div>
                 </div>
+                <div className="booking-info__div booking-info__date">
+                    <div className="booking-info__label">Chọn ngày thuê : </div>
+                    <div className="booking-info__value">
+                        <FilterCarByDate />
+                    </div>
+                </div>
                 <div className="booking-info__div booking-info__select">
                     <div className="booking-info__label">Chọn xe cho thuê : </div>
-                    <select className="form-select" aria-label="Default select example">
+                    <select 
+                        className="form-select" 
+                        aria-label="Default select example" 
+                        onChange={handleChooseCar}
+                    >
                         <option selected>Chọn xe</option>
                         {(cars?cars:[]).map((car,index)=>(
                             <option key={index} value={car._id} disabled={(car.status===true?true:false)}>
@@ -75,6 +124,63 @@ function Booking(props) {
                             </option>
                         ))}
                     </select>
+                </div>
+                <div className="booking-info__div car-info">
+                    <table className="table table-hover table-bordered ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tên xe</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col">Biển số</th>
+                                <th scope="col">Loại xe</th>
+                                <th scope="col">Hãng xe</th>
+                                <th scope="col">Đơn giá(VND)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {oneCar?(
+                                <tr>
+                                    <td>{oneCar.name}</td>
+                                    <td>{oneCar.description}</td>
+                                    <td>{oneCar.failure}</td>
+                                    <td>{oneCar.licensePlate}</td>
+                                    <td>{oneCar.type}</td>
+                                    <td>{oneCar.company}</td>
+                                    <td>{formatPrice(oneCar.price)}</td>
+                                </tr>
+                            ):(
+                                <tr></tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="booking-info__div booking-info__price">
+                    <div className="box-price">
+                        <div className="price price-1">
+                            <div className="price-label">
+                                <p>Giá thuê :</p>
+                                <small>(giá x ngày thuê + VAT(10%))</small>
+                            </div>
+                            <div className="price-value">{formatPrice("10000000")}</div>
+                        </div>   
+                        <div className="price price-1">
+                            <div className="price-label">
+                                <p>Tiền cọc (30%) :</p>
+                                <small>(khách hàng được hoàn lại sau khi trả xe)</small>
+                            </div>
+                            <div className="price-value">{formatPrice("10000000")}</div>
+                        </div> 
+                        
+                        <div className="price price-1">
+                            <div className="price-label">Tổng số tiền :</div>
+                            <div className="price-value">{formatPrice("10000000")}</div>
+                        </div> 
+                    </div>           
+                </div>
+                <div className="booking-info__div booking-info__submit">
+                    <div className="button button-watch">Xem hóa đơn</div>
+                    <div className="button button-submit">Hoàn thành</div>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import carApi from 'api/carAPI';
 import DialogCar from './components/dialogCar'
+import { formatPrice } from 'utils/formatPrice';
 
 function Car(props) {
     interface Car {
@@ -174,7 +175,7 @@ function Car(props) {
                                 <td className={car.status==true?"busy":"no-busy"}>
                                     {car.status==true?"Bận":"Trống"}
                                 </td>
-                                <td>{car.price}</td>
+                                <td>{formatPrice(car.price)}</td>
                                 <td className="td-button">
                                     <div
                                         className="button-active button-edit"

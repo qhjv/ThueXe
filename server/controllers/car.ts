@@ -9,7 +9,15 @@ export const getCar = async (req:Request, res:Response)=>{
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-
+export const getOneCar = async (req:Request, res:Response)=>{
+    try {
+        const carId = { _id: req.params.id}
+        const oneCar = await CarModel.findById(carId);
+        res.status(200).json(oneCar);
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+};
 export const createCar = async (req:Request, res:Response)=>{
     try {
         const newCar = req.body;

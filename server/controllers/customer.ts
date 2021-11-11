@@ -9,7 +9,15 @@ export const getCustomer = async (req:Request, res:Response)=>{
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-
+export const getOneCustomer = async (req:Request, res:Response)=>{
+    try {
+        const customerId = { _id: req.params.id}
+        const oneCustomer = await CustomerModel.findById(customerId);
+        res.status(200).json(oneCustomer);
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+};
 export const createCustomer = async (req:Request, res:Response)=>{
     try {
         const newCustomer = req.body;

@@ -20,7 +20,7 @@ const customerApi = {
         return axiosClient.post(url , data)
     },
     deleteCustomer(id){
-        const url = `/customer/${id}`;
+        const url = `/customer/delete/${id}`;
         return axiosClient.delete(url)
     }
     // getmovieNowShowId(id){

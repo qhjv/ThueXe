@@ -1,13 +1,6 @@
-POST  http://localhost:6000/api/car
+GET  http://localhost:5000/api/customer
 Content-Type: application/json
 
 {
-    "name": "vinfast",
-    "description": "test",
-    "failure": "mới",
-    "licensePlate": "123",
-    "type": "4 chỗ",
-    "company": "VinGroup",
-    "status": false,
-    "price": "500000"
+    "_id": "618b41249cc2287bd4ab43e3"
 }
