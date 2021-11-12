@@ -10,8 +10,17 @@ import { formatPrice } from 'utils/formatPrice';
 
 function Booking(props) {
     const [cars, setCars] = useState<any>([]);
+    const [filterDay, setFilterDay] = useState<any>([]);
+    const [day, setDay] = useState<any>();
     const [oneCustomer, setOneCustomer] = useState<any>({});
     const [oneCar, setOneCar] = useState<any>({});
+    const [bill, setBill] = useState<any>({
+        price:"",
+        deposit:"",
+        totalMoney:"",
+        startDate:"",
+        endDate:"",
+    });
     const [idCar,setIdCar] = useState<any>();
 
     let { id } = useParams();
@@ -75,9 +84,20 @@ function Booking(props) {
         }
     }, [idCar])
     useEffect(() => {
+        var totalMoney = (oneCar.price?oneCar.price:0) * 4;
+        console.log(totalMoney)
+    },[idCar])
+    useEffect(() => {
         getCar()
         setOneCustomer(customer)
     }, [customer])
+    const handleFilterDate = (value) => {
+        setFilterDay(value)
+    }
+    useEffect(() => {
+        setDay(Math.floor(( Date.parse(filterDay[1]) - Date.parse(filterDay[0]) ) / 86400000));
+    }, [filterDay])
+    console.log(day)
     return (
         <div className="booking-div">
             <ToastContainer/>
@@ -107,7 +127,7 @@ function Booking(props) {
                 <div className="booking-info__div booking-info__date">
                     <div className="booking-info__label">Chọn ngày thuê : </div>
                     <div className="booking-info__value">
-                        <FilterCarByDate />
+                        <FilterCarByDate dateValue={handleFilterDate} />
                     </div>
                 </div>
                 <div className="booking-info__div booking-info__select">
@@ -135,7 +155,7 @@ function Booking(props) {
                                 <th scope="col">Biển số</th>
                                 <th scope="col">Loại xe</th>
                                 <th scope="col">Hãng xe</th>
-                                <th scope="col">Đơn giá(VND)</th>
+                                <th scope="col">Đơn giá(VND/ngày)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -160,21 +180,21 @@ function Booking(props) {
                         <div className="price price-1">
                             <div className="price-label">
                                 <p>Giá thuê :</p>
-                                <small>(giá x ngày thuê + VAT(10%))</small>
+                                <small>(giá x số ngày thuê + VAT(10%))</small>
                             </div>
-                            <div className="price-value">{formatPrice("10000000")}</div>
+                            <div className="price-value">{formatPrice((oneCar.price?oneCar.price:0) * (day?day:0))}</div>
                         </div>   
                         <div className="price price-1">
                             <div className="price-label">
                                 <p>Tiền cọc (30%) :</p>
                                 <small>(khách hàng được hoàn lại sau khi trả xe)</small>
                             </div>
-                            <div className="price-value">{formatPrice("10000000")}</div>
+                            <div className="price-value">{formatPrice((oneCar.price?oneCar.price:0) * (day?day:0) * 0.3)}</div>
                         </div> 
                         
                         <div className="price price-1">
                             <div className="price-label">Tổng số tiền :</div>
-                            <div className="price-value">{formatPrice("10000000")}</div>
+                            <div className="price-value">{formatPrice((oneCar.price?oneCar.price:0) * (day?day:0) + (oneCar.price?oneCar.price:0) * (day?day:0) * 0.3)}</div>
                         </div> 
                     </div>           
                 </div>

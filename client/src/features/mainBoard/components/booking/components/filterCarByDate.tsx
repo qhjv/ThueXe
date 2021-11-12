@@ -12,6 +12,9 @@ function getWeeksAfter(date: Date | null, amount: number) {
 
 function FilterCarByDate(props) {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
+  React.useEffect(() => {
+    props.dateValue(value)
+  }, [value])
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateRangePicker

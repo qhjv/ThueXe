@@ -158,7 +158,7 @@ function Car(props) {
                             <th scope="col">Loại xe</th>
                             <th scope="col">Hãng xe</th>
                             <th scope="col">Trạng thái</th>
-                            <th scope="col">Đơn giá(VND)</th>
+                            <th scope="col">Đơn giá(VND/ngày)</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>

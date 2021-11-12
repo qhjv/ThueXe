@@ -83,6 +83,7 @@
     font-size: 20px;
     font-weight:500;
     letter-spacing: 1px;
+    border-bottom: 1px solid #d5d5d5;
 }
 .booking-info__div.booking-info__submit {
     justify-content: end;
