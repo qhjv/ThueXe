@@ -18,6 +18,7 @@
     color:#b3b5b8;
     display: flex;
     text-decoration: none;
+    align-items:center;
 }
 .menu ul .active{
     color:#ffa00a;

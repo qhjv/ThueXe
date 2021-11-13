@@ -6,26 +6,42 @@ import './booking.css'
 import { ToastContainer, toast } from 'react-toastify';
 import carApi from 'api/carAPI';
 import FilterCarByDate from './components/filterCarByDate'
+import DialogBill from './components/dialogBill'
 import { formatPrice } from 'utils/formatPrice';
+import billApi from 'api/billAPI';
+import { format, compareAsc } from 'date-fns'
+import { useNavigate } from "react-router-dom";
 
 function Booking(props) {
+    let history = useNavigate();
     const [cars, setCars] = useState<any>([]);
     const [filterDay, setFilterDay] = useState<any>([]);
     const [day, setDay] = useState<any>();
     const [oneCustomer, setOneCustomer] = useState<any>({});
     const [oneCar, setOneCar] = useState<any>({});
     const [bill, setBill] = useState<any>({
+        billCode:"",
+        carCode:"",
+        customerCode:"",
+        startDay:"",
+        endDay:"",
         price:"",
         deposit:"",
         totalMoney:"",
-        startDate:"",
-        endDate:"",
     });
+    
     const [idCar,setIdCar] = useState<any>();
+    const [openDialog, setOpenDialog] = useState(false);
 
     let { id } = useParams();
     const {customer,loading}= useCustomerInfo(id);
 
+    const handleAdd = () => {
+        setOpenDialog(true);
+    }
+    const handleClose = () => {
+        setOpenDialog(false);
+    }
     const getCar = async()=>{
         (async () => {
             try {
@@ -51,6 +67,7 @@ function Booking(props) {
     const handleChooseCar =(e) =>{
         setIdCar(e.target.value)
     }
+    
     useEffect(() => {
         if(idCar){
             (async () => {
@@ -97,7 +114,46 @@ function Booking(props) {
     useEffect(() => {
         setDay(Math.floor(( Date.parse(filterDay[1]) - Date.parse(filterDay[0]) ) / 86400000));
     }, [filterDay])
-    console.log(day)
+    
+    const handleAddBill = async () => {
+        try {
+            await billApi.createBill({
+                billCode: Math.random().toString(36).substr(2, 5),
+                carCode:oneCar._id,
+                customerCode:oneCustomer._id,
+                carName:oneCar.name,
+                customerName:oneCustomer.name,
+                startDay:format(new Date(filterDay[0]), 'dd/MM/yyyy')==="01/01/1970"?"":format(new Date(filterDay[0]), 'dd/MM/yyyy'),
+                endDay:format(new Date(filterDay[1]), 'dd/MM/yyyy')==="01/01/1970"?"":format(new Date(filterDay[1]), 'dd/MM/yyyy'),
+                price:(oneCar.price?oneCar.price:0) * (day?day:0),
+                deposit:(oneCar.price?oneCar.price:0) * (day?day:0) * 0.3,
+                totalMoney:(oneCar.price?oneCar.price:0) * (day?day:0) + (oneCar.price?oneCar.price:0) * (day?day:0) * 0.3,
+            });
+            toast.success("Thêm thành công", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                history("/booked"); 
+            }, 2000);
+        } catch (error:any) {
+            console.log("failed:",error)
+            toast.error(`${error.response.data.message}`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
     return (
         <div className="booking-div">
             <ToastContainer/>
@@ -199,10 +255,14 @@ function Booking(props) {
                     </div>           
                 </div>
                 <div className="booking-info__div booking-info__submit">
-                    <div className="button button-watch">Xem hóa đơn</div>
-                    <div className="button button-submit">Hoàn thành</div>
+                    <div className="button button-watch " onClick={handleAdd}>Xem hóa đơn</div>
+                    <div className="button button-submit" onClick={handleAddBill}>Hoàn thành</div>
                 </div>
             </div>
+            <DialogBill
+                open={openDialog}
+                close={handleClose}
+            />
         </div>
     );
 }

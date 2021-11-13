@@ -1,0 +1,16 @@
+.billBoard{
+    padding:15px 20px;
+}
+.billBoard-title{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bill-list{
+    margin-top:30px;
+    overflow-y: auto;
+    height:500px;
+}
+.bill-list table{
+    text-align: center;
+}

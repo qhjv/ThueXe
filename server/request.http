@@ -1,6 +1,16 @@
-GET  http://localhost:5000/api/customer
+DELETE  http://localhost:5000/api/bill/delete
 Content-Type: application/json
 
 {
-    "_id": "618b41249cc2287bd4ab43e3"
+    "_id": "618f72bc576ff4c050f9f000",
+    "billCode": "m16ol",
+    "carCode": "6187b0176be4554c55a9d45d",
+    "customerCode": "6188777da606928518bdfcaa",
+    "carName": "vinfast 1",
+    "customerName": "Vũ Quang Huy",
+    "startDay": "13/11/2021",
+    "endDay": "20/11/2021",
+    "price": "3500000",
+    "deposit": "1050000",
+    "totalMoney": "4550000"
 }

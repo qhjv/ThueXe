@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import {connect} from './db/index';
 import admin from './routers/admin';
 import car from './routers/car';
+import bill from './routers/bill';
 import customer from './routers/customer';
 // Connect to DB
 connect();
@@ -19,8 +20,7 @@ app.use(express.urlencoded({ extended: true, limit: '30mb' }));
 app.use('/api/car', car);
 app.use('/api/customer', customer);
 app.use('/api/admin', admin);
-// app.use('/api/imgdemo', imgDemo);
-// app.use('/api/imgview', imgView);
+app.use('/api/bill', bill);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

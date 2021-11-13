@@ -108,3 +108,63 @@
 .button-submit:hover{
     background:#cf8307;
 }
+.dialog-bill .css-twia2z-MuiPaper-root-MuiDialog-paper{
+    max-width: 856px!important;
+}
+.bill-div {
+    width: 100%;
+    margin-top: 15px;
+    padding: 6px 20px;
+    border: 5px solid #555;
+}
+.bill-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.bill-title__logo {
+    width: 100px;
+}
+.bill-title__logo img{
+    width:100%;
+}
+.bill-title__h3 {
+    font-size: 25px;
+    font-weight: 700;
+}
+.bill-store>div,
+.bill-customer>div,
+.bill-price>div,
+.bill-signature{
+    display: flex;
+}
+.bill-price>div,
+.bill-signature{
+    justify-content:space-between
+}
+.bill-signature>div{
+    text-align:center
+}
+.dialog-bill__value {
+    flex: 1;
+    padding-left:30px;
+    border-bottom: 1px dashed;
+}
+.bill {
+    border-bottom: 1px solid #999;
+    padding: 20px 0;
+}
+.bill >div {
+    margin-bottom: 8px;
+}
+.bill-price .dialog-bill__value{
+    text-align:end;
+    font-size: 20px;
+    font-weight:600
+}
+.bill-signature.bill {
+    height: 200px;
+}
+.display-none{
+    display:none
+}
