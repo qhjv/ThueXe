@@ -50,15 +50,15 @@ function DialogBill(props) {
                         <div className="bill-customer bill">
                             <div className="bill-customer__name">
                                 <div className="customer-name__label dialog-bill__label">Tên khách hàng :</div>
-                                <div className="customer-name__value dialog-bill__value">Vũ QUnag Huy</div>
+                                <div className="customer-name__value dialog-bill__value">{props.oneCustomer.name}</div>
                             </div>
                             <div className="bill-customer__tel">
                                 <div className="customer-tel__label dialog-bill__label">Số điện thoại :</div>
-                                <div className="customer-tel__value dialog-bill__value">100000</div>
+                                <div className="customer-tel__value dialog-bill__value">{props.oneCustomer.tel}</div>
                             </div>
                             <div className="bill-customer__address">
                                 <div className="customer-address__label dialog-bill__label">Địa chỉ :</div>
-                                <div className="customer-address__value dialog-bill__value">cấu giáy hà nội</div>
+                                <div className="customer-address__value dialog-bill__value">{props.oneCustomer.address}</div>
                             </div>
                             <div className="bill-customer__status">
                                 <div className="customer-status__label dialog-bill__label">Hình thức thanh toán :</div>
@@ -80,11 +80,11 @@ function DialogBill(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>hihi</td>
+                                        <td>{props.oneCar.name}</td>
                                         <td>chiếc</td>
                                         <td>1</td>
-                                        <td>100000</td>
-                                        <td>1000000</td>
+                                        <td>{props.bill.startDay}</td>
+                                        <td>{props.bill.endDay}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -92,15 +92,15 @@ function DialogBill(props) {
                         <div className="bill-price bill">
                             <div className="bill-price1">
                                 <div className="bill-price__label dialog-bill__label">Thành tiền<small>(Giá tiền x ngày thuê + VAT(10%))</small>:</div>
-                                <div className="bill-price__value dialog-bill__value">100000</div>
+                                <div className="bill-price__value dialog-bill__value">{props.bill.price}</div>
                             </div>
                             <div className="bill-price2">
                                 <div className="bill-price1__label dialog-bill__label">Tiền cọc<small>(khách hàng được hoàn lại sau khi trả xe)</small>:</div>
-                                <div className="bill-price1__value dialog-bill__value">100000</div>
+                                <div className="bill-price1__value dialog-bill__value">{props.bill.deposit}</div>
                             </div>
                             <div className="bill-price3">
                                 <div className="bill-price2__label dialog-bill__label">Tổng số tiền :</div>
-                                <div className="bill-price2__value dialog-bill__value">100000</div>
+                                <div className="bill-price2__value dialog-bill__value">{props.bill.totalMoney}</div>
                             </div>
                         </div>
                         <div className="bill-signature bill">

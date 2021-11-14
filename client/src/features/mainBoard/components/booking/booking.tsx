@@ -20,9 +20,6 @@ function Booking(props) {
     const [oneCustomer, setOneCustomer] = useState<any>({});
     const [oneCar, setOneCar] = useState<any>({});
     const [bill, setBill] = useState<any>({
-        billCode:"",
-        carCode:"",
-        customerCode:"",
         startDay:"",
         endDay:"",
         price:"",
@@ -38,6 +35,13 @@ function Booking(props) {
 
     const handleAdd = () => {
         setOpenDialog(true);
+        setBill({
+            startDay:format(new Date(filterDay[0]), 'dd/MM/yyyy')==="01/01/1970"?"":format(new Date(filterDay[0]), 'dd/MM/yyyy'),
+            endDay:format(new Date(filterDay[1]), 'dd/MM/yyyy')==="01/01/1970"?"":format(new Date(filterDay[1]), 'dd/MM/yyyy'),
+            price:formatPrice((oneCar.price?oneCar.price:0) * (day?day:0)),
+            deposit:formatPrice((oneCar.price?oneCar.price:0) * (day?day:0) * 0.3),
+            totalMoney:formatPrice((oneCar.price?oneCar.price:0) * (day?day:0) + (oneCar.price?oneCar.price:0) * (day?day:0) * 0.3),
+        })
     }
     const handleClose = () => {
         setOpenDialog(false);
@@ -129,7 +133,7 @@ function Booking(props) {
                 deposit:(oneCar.price?oneCar.price:0) * (day?day:0) * 0.3,
                 totalMoney:(oneCar.price?oneCar.price:0) * (day?day:0) + (oneCar.price?oneCar.price:0) * (day?day:0) * 0.3,
             });
-            toast.success("Thêm thành công", {
+            toast.success("Hoàn thành", {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -262,6 +266,9 @@ function Booking(props) {
             <DialogBill
                 open={openDialog}
                 close={handleClose}
+                oneCar={oneCar}
+                oneCustomer={oneCustomer}
+                bill={bill}
             />
         </div>
     );
