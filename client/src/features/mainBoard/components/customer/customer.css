@@ -43,7 +43,6 @@
   width: 100%;
 }
 .customer-search {
-    margin-top: 30px;
   position: relative;
 }
 .customer-search .form-control:focus {
@@ -57,6 +56,6 @@
     right: 14px;
     transform: translateY(-50%);
 }
-.customer-list{
-    margin-top:10px!important
+.customer .customer-list .table thead th{
+    line-height: 36px;
 }

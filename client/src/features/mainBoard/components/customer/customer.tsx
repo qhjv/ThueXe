@@ -153,14 +153,6 @@ function Customer(props) {
                     Thêm
                 </Button>
             </div>
-            <div className="customer-search">
-                <i className="fas fa-search" />
-                <input
-                   type="text" 
-                   className="form-control" 
-                   placeholder="Tìm kiếm" 
-                   onChange={handleChangeSearch}/>
-            </div>
             <div className="customer-list">
                 <table className="table table-hover table-bordered ">
                     <thead>
@@ -171,8 +163,16 @@ function Customer(props) {
                             <th scope="col">SĐT</th>
                             <th scope="col">Địa chỉ</th>
                             <th scope="col">Trạng thái</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th scope="col" colSpan={2}>
+                                <div className="customer-search">
+                                    <i className="fas fa-search" />
+                                    <input
+                                    type="text" 
+                                    className="form-control" 
+                                    placeholder="Tìm kiếm" 
+                                    onChange={handleChangeSearch}/>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
