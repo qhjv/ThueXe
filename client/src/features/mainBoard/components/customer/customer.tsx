@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import PropTypes from 'prop-types';
 import './customer.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -21,6 +21,8 @@ function Customer(props) {
     const [editCustomer, setEditCustomer] = useState([]);
     const [openDialog, setOpenDialog] = useState(false);
     const [formMode, setFormMode] = useState(true);
+    const [search, setSearch] = useState('');
+    const typingTimeOutRef =  useRef<any|null>()
 
     const getCustomer = async()=>{
         (async () => {
@@ -128,7 +130,15 @@ function Customer(props) {
             });
         }
     }
-    
+    const handleChangeSearch = (event) => {
+        if(typingTimeOutRef.current){
+            clearTimeout(typingTimeOutRef.current)
+        }
+        typingTimeOutRef.current=setTimeout(()=>{
+              const nameSearch = event.target.value
+              setSearch(nameSearch)
+        },500)
+    }
     return (
         <div className="customer">
             <ToastContainer/>
@@ -142,6 +152,14 @@ function Customer(props) {
                 >
                     Thêm
                 </Button>
+            </div>
+            <div className="customer-search">
+                <i className="fas fa-search" />
+                <input
+                   type="text" 
+                   className="form-control" 
+                   placeholder="Tìm kiếm" 
+                   onChange={handleChangeSearch}/>
             </div>
             <div className="customer-list">
                 <table className="table table-hover table-bordered ">
@@ -158,7 +176,13 @@ function Customer(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {(customers?customers:[]).map((customer,index)=>(
+                        {(customers?customers:[]).filter(customer=>{
+                            if(search!==""){
+                                return customer.name.toLowerCase().includes(search.toLowerCase()) 
+                            }else{
+                                return customer
+                            }
+                        }).map((customer,index)=>(
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{customer.name}</td>

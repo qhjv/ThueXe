@@ -105,10 +105,6 @@ function Booking(props) {
         }
     }, [idCar])
     useEffect(() => {
-        var totalMoney = (oneCar.price?oneCar.price:0) * 4;
-        console.log(totalMoney)
-    },[idCar])
-    useEffect(() => {
         getCar()
         setOneCustomer(customer)
     }, [customer])

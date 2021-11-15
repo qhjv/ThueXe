@@ -1,45 +1,62 @@
-.customer{
-    padding:15px 20px;
+.customer {
+  padding: 15px 20px;
 }
-.customer-title{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
+.customer-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.customer .customer-title h3{
-    margin:0;
+.customer .customer-title h3 {
+  margin: 0;
 }
 .customer .customer-title .MuiButtonBase-root.customer-title__add {
-    padding: 6px 12px;
-    border-radius:3px;
-    background: #ffa00a;
-    font-weight:700;
-    color:#fff;
+  padding: 6px 12px;
+  border-radius: 3px;
+  background: #ffa00a;
+  font-weight: 700;
+  color: #fff;
 }
-.td-button{
-    display:flex;
-    justify-content:center
+.td-button {
+  display: flex;
+  justify-content: center;
 }
-.button-active{
-    cursor:pointer;
-    text-decoration: underline;
+.button-active {
+  cursor: pointer;
+  text-decoration: underline;
 }
-.button-edit{
-    margin-right:10px;
+.button-edit {
+  margin-right: 10px;
 }
-.button-delete{
-    margin-left:10px;
+.button-delete {
+  margin-left: 10px;
 }
-.button-active:hover{
-    color:blue!important
+.button-active:hover {
+  color: blue !important;
 }
-.busy{
-    color:red!important;
+.busy {
+  color: red !important;
 }
-.no-busy{
-    color:green!important;
+.no-busy {
+  color: green !important;
 }
-.dialog-child div{
-    width:100%;
+.dialog-child div {
+  width: 100%;
 }
-
+.customer-search {
+    margin-top: 30px;
+  position: relative;
+}
+.customer-search .form-control:focus {
+    border-color: var(--bs-yellow);
+    outline: 0;
+    box-shadow: none;
+}
+.customer-search i {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+}
+.customer-list{
+    margin-top:10px!important
+}
