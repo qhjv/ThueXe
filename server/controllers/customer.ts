@@ -23,20 +23,12 @@ export const createCustomer = async (req:Request, res:Response)=>{
         const newCustomer = req.body;
         const setName = req.body.name;
         const name = await CustomerModel.findOne({ setName })
-        // CustomerModel.counterReset('id', function(err) {
-        //     // Now the counter is 0
-        // });
-		// if (name){
-		// 	return res
-		// 		.status(400)
-		// 		.json({ success: false, message: 'Name already exists' })
-        // }
         const customer = new CustomerModel(newCustomer);
         await customer.save();
 
         res.status(200).json(customer);
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Internal server error' });
+        res.status(500).json({ success: false, message: 'Chưa điền đầy đử thông tin !!!' });
     }
 };
 

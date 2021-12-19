@@ -33,7 +33,6 @@ function Customer(props) {
                 // const action = getMovie(moviesList)
                 // dispatch(action)
                 // setLoading(false)
-                console.log(customerList)
             } catch (error:any) {
                 toast.error(`${error.response.data.message}`, {
                     position: "top-right",
@@ -88,7 +87,6 @@ function Customer(props) {
         }
     }
     const addCustomer = async (data) => {
-        console.log(data)
         try {
             if(formMode){
                 await customerApi.createCustomer(data);

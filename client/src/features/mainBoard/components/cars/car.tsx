@@ -35,7 +35,6 @@ function Car(props) {
                 // const action = getMovie(moviesList)
                 // dispatch(action)
                 // setLoading(false)
-                console.log(carList)
             } catch (error:any) {
                 toast.error(`${error.response.data.message}`, {
                     position: "top-right",
@@ -65,7 +64,6 @@ function Car(props) {
         setOpenDialog(true)
     }
     const addCar = async (data) => {
-        console.log(data)
         try {
             if(formMode){
                 await carApi.createCar(data);

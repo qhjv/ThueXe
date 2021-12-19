@@ -11,15 +11,6 @@ export const getBill = async (req:Request, res:Response)=>{
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-// export const getOneBill = async (req:Request, res:Response)=>{
-//     try {
-//         const billId = { _id: req.params.id}
-//         const oneBill = await BillModel.findById(billId);
-//         res.status(200).json(oneBill);
-//     } catch (error) {
-//         res.status(500).json({ success: false, message: 'Internal server error' });
-//     }
-// };
 export const createBill = async (req:Request, res:Response)=>{
     try {
         const newBill = req.body;
@@ -58,22 +49,6 @@ export const createBill = async (req:Request, res:Response)=>{
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-
-// export const updateBill = async (req:Request, res:Response)=>{
-//     try {
-//         const updateBill = req.body;
-// 		const bill = await BillModel.findOneAndUpdate(
-//             { _id: updateBill._id },
-//             updateBill,
-//             { new: true }
-//         );
-
-//         res.status(200).json(bill);
-//     } catch (error) {
-//         res.status(500).json({ success: false, message: 'Internal server error' });
-//     }
-// };
-
 export const deleteBill = async (req:Request, res:Response)=>{
     try {
         const billDelete = { _id: req.params.id}

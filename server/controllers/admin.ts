@@ -4,7 +4,6 @@ import { Router, Request, Response } from 'express';
 export const getAdmin = async (req:Request, res:Response)=>{
     try {
         const admin = await AdminModel.find();
-        console.log(admin);
         res.status(200).json(admin);
     } catch (error) {
         res.status(500).json({error:error});

@@ -23,20 +23,12 @@ export const createCar = async (req:Request, res:Response)=>{
         const newCar = req.body;
         const setName = req.body.name;
         const name = await CarModel.findOne({ setName })
-        // CarModel.counterReset('id', function(err) {
-        //     // Now the counter is 0
-        // });
-		// if (name){
-		// 	return res
-		// 		.status(400)
-		// 		.json({ success: false, message: 'Name already exists' })
-        // }
         const car = new CarModel(newCar);
         await car.save();
 
         res.status(200).json(car);
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Internal server error' });
+        res.status(500).json({ success: false, message: 'Chưa điền đầy đử thông tin !!!' });
     }
 };
 

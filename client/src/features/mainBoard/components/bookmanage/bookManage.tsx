@@ -17,7 +17,6 @@ function BookManage(props) {
                 // const action = getMovie(moviesList)
                 // dispatch(action)
                 // setLoading(false)
-                console.log(billList)
             } catch (error:any) {
                 toast.error(`${error.response.data.message}`, {
                     position: "top-right",
@@ -39,7 +38,6 @@ function BookManage(props) {
             id:value._id,
             data:value
         }
-        console.log(data)
         try {
             await billApi.deleteBill(data);
             getBill()
